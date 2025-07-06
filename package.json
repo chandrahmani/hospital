@@ -62,6 +62,12 @@
   "engines": {
     "node": "22"
   },
+  "lint-staged": {
+    "src/**/*.ts?(x)": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "msw": {
     "workerDirectory": [
       "public"
