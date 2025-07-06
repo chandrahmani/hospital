@@ -7,6 +7,21 @@ const { execSync } = require('child_process');
 
 // get the date at the time of build in the 'build-info.txt' file
 // not in used
+
+const fs = require('fs');
+const path = require('path');
+
+const distPath = path.resolve(__dirname, 'dist');
+const filePath = path.join(distPath, 'build-info.txt');
+
+// Create dist folder if it doesn't exist
+if (!fs.existsSync(distPath)) {
+  fs.mkdirSync(distPath, { recursive: true });
+}
+
+fs.writeFileSync(filePath, buildInfo);
+
+
 class BuildDatePlugin {
   apply(compiler) {
     compiler.hooks.done.tap('BuildDatePlugin', (stats) => {
